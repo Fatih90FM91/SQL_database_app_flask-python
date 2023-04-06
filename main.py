@@ -33,9 +33,7 @@ class Cafe(db.Model):
 
             # Loop through each column in the data record
         for column in self.__table__.columns:
-                # Create a new dictionary entry;
-                # where the key is the name of the column
-                # and the value is the value of the column
+
             dictionary[column.name] = getattr(self, column.name)
         return dictionary
 
@@ -54,7 +52,7 @@ def home():
 def get_random_cafe():
     cafes = db.session.query(Cafe).all()
     random_cafe = random.choice(cafes)
-    #Simply convert the random_cafe data record to a dictionary of key-value pairs.
+
     return jsonify(cafe=random_cafe.to_dict())
 
 
@@ -63,7 +61,7 @@ def get_all_cafes():
     cafes = db.session.query(Cafe).all()
     all_cafe = [items.to_dict() for items in cafes]
     print(all_cafe)
-    #Simply convert the random_cafe data record to a dictionary of key-value pairs.
+
     return jsonify(cafe=all_cafe)
 
 
